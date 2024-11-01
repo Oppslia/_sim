@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <div id="parent">
+        <div class="form-stat-container">
+            <h2>Baby Creator mk.I</h2>
+            <div id="formdiv">
+                <form id="babyForm">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <input type="date" id="birthDate" placeholder="Birth Date ">
+                    <input type="number" id="heightIn" placeholder="Height (inches)">
+                    <input type="number" id="weightOz" placeholder="Weight (oz)">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <div id="specs"> 
+                <div class="header">
+                    <h3 class="name-birthdate">
+                        <span id="babyName">John Doe</span><br>
+                        <span id="babyBirthdate">2022-01-01</span>
+                    </h3>
+                    <h3 class="mood">
+                        Mood: <span id="babyMood">Happy</span>
+                    </h3>
+                </div>
+                <div class="details">
+                    <h2>Baby Specs</h2>
+                    <h3>Height: <span id="babyHeight">20 inches</span></h3>
+                    <h3>Weight: <span id="babyWeight">25 oz</span></h3>
+                    <h3>Hunger: <span id="babyHunger">Low</span></h3>
+                    <h3>Pressure: <span id="babyPressure">Normal</span></h3>
+                    <h3>Bladder: <span id="babyBladder">Moderate</span></h3>
+                    <h3>Location: <span id="babyLocation">Not Home</span></h3>
+                </div>
+            </div>
+        </div>
+   
+</div>
+<div id="menu">
+    <!-- Feed Button with Dropdown -->
+    <div class="dropdown">
+        <button class="menu-btn" onclick="toggleDropdown('feedDropdown')">Feed</button>
+        <div id="feedDropdown" class="dropdown-content">
+
+        </div>
+    </div>
+
+    <!-- Hydrate Button with Dropdown -->
+    <div class="dropdown">
+        <button class="menu-btn" onclick="toggleDropdown('hydrateDropdown')">Hydrate</button>
+        <div id="hydrateDropdown" class="dropdown-content">
+        </div>
+    </div>
+</div>
+    <script src="./js/front.js"></script>
+</body>
+</html>

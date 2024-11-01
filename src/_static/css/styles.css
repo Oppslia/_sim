@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.parent{
+    display:flex;
+}
+.form-stat-container{
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(107, 162, 235, 1);
+}
+input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+.babyform label {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px 0;
+}
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #218838;
+}
+
+
+#specs .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Style for Name and Birthdate on the same line */
+#specs .name-birthdate {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    flex: 1;
+}
+
+#specs .mood {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
+    text-align: right;
+}
+#specs .details{
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#specs .details h3 {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+#menu {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    width: 200px;
+}
+
+/* Menu Button */
+.menu-btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Dropdown Item */
+.dropdown-content button {
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: left;
+    border: none;
+    
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
