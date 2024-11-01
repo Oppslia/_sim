@@ -2,19 +2,27 @@ import * as Pantry from "../repos/foodrepo.mjs"
 import express from "express"
 const router = express.Router({ mergeParams: true })
 router.use(express.json())
-router.get("/get-types", (req, res) => {
+router.get("/get-all", (req, res) => {
     try {    //gets all users? why would we need this?
-        res.status(200).json(Pantry.getFoodTypes())
-        console.log("hi")
+        res.status(200).json(Pantry.getAll())
     } catch(error) {
         console.error(error)
         res.status(500).json({message: "Internal Server Error"})
         }
     
 })
-router.get("/get-foods/:type", (req, res) => {
+router.get("/get-categories", (req, res) => {
     try {    //gets all users? why would we need this?
-        res.status(200).json(Pantry.getFoods(req.params.type))
+        res.status(200).json(Pantry.getFoodCategory())
+    } catch(error) {
+        console.error(error)
+        res.status(500).json({message: "Internal Server Error"})
+        }
+    
+})
+router.get("/get-foods/:category", (req, res) => {
+    try {    //gets all users? why would we need this?
+        res.status(200).json(Pantry.getFoods(req.params.category))
     } catch(error) {
         console.error(error)
         res.status(500).json({message: "Internal Server Error"})

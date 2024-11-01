@@ -1,7 +1,11 @@
 import * as foods from "../../models/foods.mjs"
-export function getFoodTypes(){
+export function getFoodCategory(){
     return Object.keys(foods)
 }
-export function getFoods(type){
-    return foods[type]
+export function getFoods(category){
+    return foods[category]
 }   
+export function getAll(){
+    console.log(foods)
+    return foods
+}
