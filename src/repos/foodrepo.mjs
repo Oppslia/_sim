@@ -6,6 +6,5 @@ export function getFoods(category){
     return foods[category]
 }   
 export function getAll(){
-    console.log(foods)
     return foods
 }

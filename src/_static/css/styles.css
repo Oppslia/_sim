@@ -75,59 +75,59 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
-#menu {
-    display: flex;
-    gap: 15px;
-    padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    width: 200px;
-}
+    #menu {
+        display: flex;
+        gap: 15px;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 8px;
+        width: 200px;
+    }
 
-/* Menu Button */
-.menu-btn {
-    padding: 8px 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-}
+    /* Menu Button */
+    .menu-btn {
+        padding: 8px 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+    }
 
-/* Dropdown Container */
-.dropdown {
-    position: relative;
-}
+    /* Dropdown Container */
+    .dropdown {
+        position: relative;
+    }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 100px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-}
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        min-width: 100px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+    }
 
-/* Dropdown Item */
-.dropdown-content button {
-    padding: 8px 12px;
-    width: 100%;
-    font-size: 0.9rem;
-    text-align: left;
-    border: none;
-    
-    cursor: pointer;
-}
+    /* Dropdown Item */
+    .dropdown-content button {
+        padding: 8px 12px;
+        width: 100%;
+        font-size: 0.9rem;
+        text-align: left;
+        border: none;
+        
+        cursor: pointer;
+    }
 
-.dropdown-content button:hover {
-    background-color: #218838;
-}
+    .dropdown-content button:hover {
+        background-color: #218838;
+    }
 
 
 
@@ -142,6 +142,9 @@ button:hover {
 
 
 /* Menu Styles */
+#please :hover > ul {
+    display: inline;
+}
 
 .third-level-menu
 {
@@ -195,15 +198,10 @@ button:hover {
     float: left;
     height: 30px;
     width: 150px;
-    background: #999999;
+    background: #973a3a;
 }
 .top-level-menu > li:hover { background: #CCCCCC; }
 
-.top-level-menu li:hover > ul
-{
-    /* On hover, display the next level's menu */
-    display: inline;
-}
 
 
 /* Menu Link Styles */
