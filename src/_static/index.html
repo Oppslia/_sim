@@ -23,8 +23,8 @@
             <div id="specs"> 
                 <div class="header">
                     <h3 class="name-birthdate">
-                        <span id="babyName">John Doe</span><br>
-                        <span id="babyBirthdate">2022-01-01</span>
+                        <span id="babyname"></span><br>
+                        <span id="babybirthdate"></span>
                     </h3>
                     <h3 class="mood">
                         Mood: <span id="babyMood">Happy</span>
@@ -32,32 +32,57 @@
                 </div>
                 <div class="details">
                     <h2>Baby Specs</h2>
-                    <h3>Height: <span id="babyHeight">20 inches</span></h3>
-                    <h3>Weight: <span id="babyWeight">25 oz</span></h3>
-                    <h3>Hunger: <span id="babyHunger">Low</span></h3>
-                    <h3>Pressure: <span id="babyPressure">Normal</span></h3>
-                    <h3>Bladder: <span id="babyBladder">Moderate</span></h3>
-                    <h3>Location: <span id="babyLocation">Not Home</span></h3>
+                    <h3>Height: <span id="babyHeightIn"></span></h3>
+                    <h3>Weight: <span id="babyWeightOz"></span></h3>
+                    <h3>Hunger: <span id="babyStomach"></span></h3>
+                    <h3>Pressure: <span id="babyStomachPressure"></span></h3>
+                    <h3>Bladder: <span id="babyBladder"></span></h3>
+                    <h3>Location: <span id="babyLocation"></span></h3>
                 </div>
             </div>
         </div>
    
 </div>
-<div id="menu">
-    <!-- Feed Button with Dropdown -->
+<div id="foodModal" class="modal">
+    <div id="msgBox">
+        <a id ="MessageBox" class ="content"></a>
+
+    </div>
+<!-- <div id="menu">
     <div class="dropdown">
         <button class="menu-btn" onclick="toggleDropdown('feedDropdown')">Feed</button>
         <div id="feedDropdown" class="dropdown-content">
         </div>
     </div>
 
-    <!-- Hydrate Button with Dropdown -->
     <div class="dropdown">
-        <button class="menu-btn" onclick="toggleDropdown('hydrateDropdown')">Hydrate</button>
+        <button class="menu-btn" onclick="toggleDropdown('hydrateDropdown'), showFoodOptions()">Hydrate</button>
         <div id="hydrateDropdown" class="dropdown-content">
         </div>
+    </div> 
+</div> -->
+    <div id="menu">
+        <div class="dropdown">
+            <button class="menu-btn" onclick="action('punt')">Punt</button>
+            <div id="feedDropdown" class="dropdown-content">
+            </div>
+        </div>
+        <div class="dropdown">  
+            <button class="menu-btn" onclick="action('throw')">Throw</button>
+            <div id="feedDropdown" class="dropdown-content">
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="menu-btn" onclick="action('hug')">Hug</button>
+            <div id="feedDropdown" class="dropdown-content">
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="menu-btn" onclick="action('whisper')">Whisper</button>
+            <div id="feedDropdown" class="dropdown-content">
+            </div>
+        </div>
     </div>
-</div>
    <div id = 'please'>
     <ul class='top-level-menu' id = 'main'>
         <li id='foods-head'>
@@ -67,7 +92,8 @@
             <a>Hydrate</a>
         </li>
     </ul>
-    </div>
+    
+</div>
 </body>
  <script src="./js/front.js"></script>
 </html>

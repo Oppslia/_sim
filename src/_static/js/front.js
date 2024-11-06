@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         drinks = await getAll('drink')// hmmm..... Object.keys({drinks})[0].split("s")[0]
         await buildDrinkMenu(drinks) // nah im not that stupid...
         console.log(`${Object.keys({drinks})} Menu Loading Done`)})(); // lol
-        let foods;
+    let foods;
     await (async () =>{
         foods = await getAll('food')
         await buildFoodMenu(foods)
@@ -34,9 +34,20 @@ async function buildDropDown(consumableType){
         list.appendChild(subMenu02)
         Object.keys(consumable[consumableCategory]).forEach(foodType => {
             const subList = document.createElement("li")
+            Object.keys(consumableType)[0] == "foods" ? subList.onclick = () => action('feed',{[foodType] : consumable[consumableCategory][foodType]}) : subList.onclick = () => action('hydrate',{[foodType] : consumable[consumableCategory][foodType]}) 
             const subCategory = document.createElement("a")
             subCategory.id = `${foodType}btn`
-            subCategory.textContent = foodType
+            //subCategory.textContent = calculateSpaces(foodType, Object.values(consumable[consumableCategory][foodType]))
+            subCategory.className = 'wide-link'
+            const spanL = document.createElement('span')
+            const spanR = document.createElement('span')
+            spanL.className = 'left'
+            spanR.className = 'right'
+            spanL.textContent = foodType
+            spanR.textContent = `${Object.values(consumable[consumableCategory][foodType])} oz`
+            subCategory.appendChild(spanL)
+            subCategory.appendChild(spanR)
+            
             subList.appendChild(subCategory)
             subMenu02.appendChild(subList)
             list.appendChild(subMenu02)
@@ -52,16 +63,17 @@ async function getAll(type){
         console.error('There was a problem with the fetch operation:', error)
     }
 }
-
-
-(form = document.getElementById('babyForm')).addEventListener('submit', async (event) => {
+((form = document.getElementById('babyForm')).addEventListener('submit', async (event) => {
     event.preventDefault()
     formSubmit(form)
     ;})
+)
 function formScraper(form){
     const data = {}
     for(let element of form.querySelectorAll('input')){
-            data[element.id] = element.value ? element.value : ''
+        if (element.value){
+            data[element.id] = element.value 
+        }       
     }
     console.log(data)
     return data 
@@ -78,27 +90,132 @@ async function formSubmit(form){
             },
             body: JSON.stringify(data),
         });
-
-        const result = await fetchResponse.json();
-
+        const result = await fetchResponse.json()
         if (fetchResponse.ok) {
-            messageElement.innerText = `Success: ${result.message}`;
+            specUpdate(result)
+            //messageElement.innerText = `Success: ${result.message}`;
+            createConsole()
             console.log(result); // Log the result
         } else {
-            messageElement.innerText = `Error: ${result.message}`;
+            //messageElement.innerText = `Error: ${result.message}`;
             console.log(result);
         }
     } catch (error) {
-        messageElement.innerText = `Network error: ${error.message}`;
+        //messageElement.innerText = `Network error: ${error.message}`;
         console.log(error);
     }
 
 };
 
+function specUpdate(result){
+    let specDiv = document.getElementById("specs")
+    const specs = specDiv.querySelectorAll('span')
+    console.log(result)
+    for([attr, value] of Object.entries(result)){
+        for (span of specs){
+            console.log()
+            if ((span.id).toLowerCase() == `baby${attr}`.toLowerCase()){
+                span.innerText = value
+                break
+            }
+        }
+    }
+}
+
+function createConsole() {
+    const foodModal = document.getElementById("foodModal");
+    foodModal.style.left = `${.5 * window.innerWidth - 200}px`;
+    foodModal.style.top = `${.5 * window.innerHeight - 150}px`;
+    foodModal.style.display == "flex" ? foodModal.style.display = "none" : foodModal.style.display = "flex" 
+}
+
+async function action(actionName, ...args){
+    const actions = {
+        feed: async (...args) => await feedBaby(...args),
+        hydrate: async (...args) => await hydrateBaby(...args),
+        hug: async () => await console.log("hug"),
+        punt: async () => await console.log("kick"),
+        throw: async () => await console.log("smash"),
+        throw: async () => await console.log("smash")
+    };
+    if (actions[actionName] && typeof actions[actionName] === 'function') {
+        await actions[actionName](...args) // Call the specified action
+    } else {
+        console.log(`Action "${actionName}" not found`);
+    }
+}
+
+async function feedBaby(food){
+    const fetchResponse = await fetch(`${BASE_URL}/baby/feed`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(food),
+    });
+    const result = await fetchResponse.json()
+    if (fetchResponse.ok) {
+        specUpdate(result)
+    }
+}
+async function hydrateBaby(drink){
+    console.log(drink)
+    const fetchResponse = await fetch(`${BASE_URL}/baby/hydrate`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(drink),
+    });
+    const result = await fetchResponse.json()
+    if (fetchResponse.ok) {
+        specUpdate(result)
+    }
+}
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function calculateSpaces(consumable, weight) {
+    const maxTextWidth = 80;
+    
+    // Convert weight to string to handle numeric values
+    const consumableStr = consumable.toString();
+    const weightStr = weight.toString();
+    
+    // Calculate how many spaces are needed to fit within max width
+    const spacesNeeded = maxTextWidth - consumableStr.length - weightStr.length;
+
+    // Ensure spaces are non-negative (in case input lengths exceed max width)
+    const quantitySpaces = spacesNeeded > 0 ? ' '.repeat(spacesNeeded) : '';
+    
+    // Construct and return the formatted string
+    const formattedString = `${consumableStr}${quantitySpaces}${weightStr}`;
+    console.log(formattedString)
+    return formattedString;
+}
 
 
 
@@ -140,7 +257,7 @@ async function fetchFoodCategories(){
     const URL = 'http://localhost:3000/food/get-categories'
     try {
         return await(await fetch(URL)).json()
-        // food.forEach(item =>{
+        // food.forEach(consumable =>{
         //     document.createElement
         // })
     } catch (error) {

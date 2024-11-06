@@ -75,83 +75,66 @@ button:hover {
     display: flex;
     justify-content: space-between;
 }
-    #menu {
-        display: flex;
-        gap: 15px;
-        padding: 10px;
-        background-color: #f2f2f2;
-        border-radius: 8px;
-        width: 200px;
-    }
-
-    /* Menu Button */
-    .menu-btn {
-        padding: 8px 12px;
-        font-size: 1rem;
-        cursor: pointer;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-    }
-
-    /* Dropdown Container */
-    .dropdown {
-        position: relative;
-    }
-
-    /* Dropdown Content (Hidden by Default) */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 40px;
-        left: 0;
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        min-width: 100px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1;
-    }
-
-    /* Dropdown Item */
-    .dropdown-content button {
-        padding: 8px 12px;
-        width: 100%;
-        font-size: 0.9rem;
-        text-align: left;
-        border: none;
-        
-        cursor: pointer;
-    }
-
-    .dropdown-content button:hover {
-        background-color: #218838;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Menu Styles */
-#please :hover > ul {
-    display: inline;
+#menu {
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    background-color: #f2f2f2;
+    margin-bottom: 12px;
 }
 
+/* Menu Button */
+.menu-btn {
+    padding: 8px 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Dropdown Item */
+.dropdown-content button {
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: left;
+    border: none;
+    
+    cursor: pointer;
+}
+
+.dropdown-content button:hover {
+    background-color: #218838;
+}
+
+/* l */
 .third-level-menu
 {
     position: absolute;
     top: 0;
-    right: -150px;
-    width: 150px;
+    right: -190px;
+    min-width: 190px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -198,10 +181,15 @@ button:hover {
     float: left;
     height: 30px;
     width: 150px;
-    background: #973a3a;
+    background: #999999;
 }
 .top-level-menu > li:hover { background: #CCCCCC; }
 
+.top-level-menu li:hover > ul
+{
+    /* On hover, display the next level's menu */
+    display: inline;
+}
 
 
 /* Menu Link Styles */
@@ -212,9 +200,47 @@ button:hover {
     color: #FFFFFF;
     text-decoration: none;
     padding: 0 0 0 10px;
-    
+
     /* Make the link cover the entire list item-container */
-    display: block;
+    display: flex;
     line-height: 30px;
 }
 .top-level-menu a:hover { color: #000000; }
+
+#please {
+    display:flex;
+}
+.wide-link {
+    display: flex;                    /* Apply flexbox layout */
+    justify-content: space-between;   /* Space items on opposite ends */
+}
+.right{
+    padding-right: 10px;
+}
+.modal {
+    position: absolute;
+    background-color: rgb(73, 72, 72);
+    border: 2px solid #4cafaf;
+    padding: 20px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+}
+#msgBox {
+    background-color: #000000; /* Black background */
+    padding: 20px; /* Padding for text spacing */
+    border-radius: 5px; /* Slightly rounded corners */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow effect */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    max-height: 300px; /* Optional: max height to constrain size */
+    line-height: 1.4; /* Increase line spacing */
+    width: 95%;
+    margin-bottom: 12px;
+    
+}
+#msgBox .content{
+    color: #00FF00; /* Bright green text */
+    font-family: monospace; /* Monospace font for terminal feel */
+    
+}

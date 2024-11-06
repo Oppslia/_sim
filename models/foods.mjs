@@ -1,38 +1,56 @@
 export const Cereal = {
-    CORNFLAKES: { weight: 100 },
-    FRUIT_LOOPS: { weight: 110 },
-    CHEERIOS: { weight: 90 },
-    RICE_CRISPIES: { weight: 95 },
-    COCOA_PUFFS: { weight: 105 },
-    FROSTED_FLAKES: { weight: 120 },
-    LUCKY_CHARMS: { weight: 115 },
+    CORNFLAKES: { weight: 7 },
+    FRUIT_LOOPS: { weight: 8 },
+    CHEERIOS: { weight: 8 },
+    RICE_CRISPIES: { weight: 7 },
+    COCOA_PUFFS: { weight: 7 },
+    FROSTED_FLAKES: { weight: 7 },
+    LUCKY_CHARMS: { weight: 9 },
 };
 
 export const Fruit = {
-    APPLE: { weight: 80 },
-    BANANA: { weight: 100 },
-    GRAPES: { weight: 70 },
-    ORANGE: { weight: 90 },
-    BLUEBERRY: { weight: 60 },
+    APPLE: { weight: 5 },
+    BANANA: { weight: 5 },
+    GRAPES: { weight: 6 },
+    ORANGE: { weight: 6 },
+    BLUEBERRY: { weight: 5 },
 };
 
 export const Goodie = {
-    COOKIE: { weight: 150 },
-    CAKE: { weight: 250 },
-    BROWNIE: { weight: 200 },
-    DONUT: { weight: 180 },
-    CUPCAKE: { weight: 220 },
-    CANDY: { weight: 50 },
-    MUFFIN: { weight: 170 },
+    COOKIE: { weight: 12 },
+    CAKE: { weight: 13 },
+    BROWNIE: { weight: 9 },
+    DONUT: { weight: 11 },
+    CUPCAKE: { weight: 11 },
+    CANDY: { weight: 8 },
+    MUFFIN: { weight: 12 },
 };
 
 export const Vegetable = {
-    CARROT: { weight: 40 },
-    SPINACH: { weight: 30 },
-    CELERY: { weight: 20 },
-    BROCCOLI: { weight: 45 },
-    POTATO: { weight: 60 },
+    CARROT: { weight: 6 },
+    SPINACH: { weight: 6 },
+    CELERY: { weight: 8 },
+    BROCCOLI: { weight: 10 },
+    POTATO: { weight: 11 },
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // export const Cereal = (function(){
 //     const Cereal = {}
