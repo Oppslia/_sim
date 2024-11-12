@@ -8,6 +8,7 @@ export class BabyConsole{
         "Specs":   "Baby Spec Monitor",
         "--help":  "Displays available commands"
     }
+    static deadBabies = []
     static babies = []
     static currentBaby;
     static interface(action, ...args){
@@ -31,6 +32,8 @@ export class BabyConsole{
                 return this.currentBaby
             case 'all':
                 return this.#getAllBabies()
+            case 'verify':
+                return this.#verifyLivingState(...args)
             default:
                 console.log(`Unkown action: ${action}`)
 
@@ -45,12 +48,37 @@ export class BabyConsole{
     static #getBabySpecs(baby) {
         const babyData = Object.entries(baby)
         for (let i = 0; i < babyData.length; i++) {
+            if (babyData[i][0] === 'status' && babyData[i][1] === 0){//---Dead
+                for (let x = 0; x < babyData.length; x++){
+                    if(babyData[x][0] !== 'message'){
+                        babyData[x][1] = 'DEAD'
+                    }
+                }
+                const updatedSpecs = Object.fromEntries(babyData)
+                try{
+                    this.currentBaby.push(this.deadBabies)
+                    this.currentBaby.filter(baby => this.currentBaby !== baby);
+                    this.currentBaby = this.currentBaby[0]
+                } catch(error) {
+                    console.log("create a new baby")
+                }
+                return updatedSpecs
+            }
+            
             if (babyData[i][0] === 'mood') {
                 babyData[i][1] = this.#getMoodString(baby.mood)
-                break
+                
+            }
+            if(babyData[i][0] === 'message'){
+                babyData[i][1].forEach(action =>{
+                    action.mood = this.#getMoodString(action.mood)
+                })
+                
             }
         }
+        
         const updatedSpecs = Object.fromEntries(babyData)
+        baby.message = [] //empties messages
         return updatedSpecs
     }
     static #getMoodString(moodValue) {
@@ -68,7 +96,6 @@ export class BabyConsole{
         }
     }
     static #feed(food){
-        console.log(food)
         this.currentBaby.eat(food)
         return this.#getBabySpecs(this.currentBaby)
     }
@@ -78,6 +105,12 @@ export class BabyConsole{
     }
     static #switchBaby(babyName){
         this.currentBaby = this.babies.find(baby => baby.name === babyName)
+    }
+    static #verifyLivingState(webBaby){
+        if(webBaby.name != this.currentBaby.name){
+            return false
+        }
+        return true
     }
     static #getAllBabies() {
         return this.babies

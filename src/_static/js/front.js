@@ -75,7 +75,6 @@ function formScraper(form){
             data[element.id] = element.value 
         }       
     }
-    console.log(data)
     return data 
 }
 
@@ -93,15 +92,13 @@ async function formSubmit(form){
         const result = await fetchResponse.json()
         if (fetchResponse.ok) {
             specUpdate(result)
-            //messageElement.innerText = `Success: ${result.message}`;
+
             createConsole()
             console.log(result); // Log the result
         } else {
-            //messageElement.innerText = `Error: ${result.message}`;
             console.log(result);
         }
     } catch (error) {
-        //messageElement.innerText = `Network error: ${error.message}`;
         console.log(error);
     }
 
@@ -110,14 +107,20 @@ async function formSubmit(form){
 function specUpdate(result){
     let specDiv = document.getElementById("specs")
     const specs = specDiv.querySelectorAll('span')
-    console.log(result)
+    const messageBox = document.getElementById("MessageBox")
+    const messages = result['message'].map(obj => {
+        return Object.entries(obj)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join(" ")
+    })
+    messageBox.innerHTML = messages.join('<br>') // Each message on a new line
     for([attr, value] of Object.entries(result)){
         for (span of specs){
-            console.log()
             if ((span.id).toLowerCase() == `baby${attr}`.toLowerCase()){
                 span.innerText = value
                 break
             }
+
         }
     }
 }
@@ -144,32 +147,63 @@ async function action(actionName, ...args){
         console.log(`Action "${actionName}" not found`);
     }
 }
-
-async function feedBaby(food){
-    const fetchResponse = await fetch(`${BASE_URL}/baby/feed`, {
+async function verifyBaby(){
+    const name = document.getElementById("babyname").textContent
+    const fetchResponse = await fetch(`${BASE_URL}/baby/verify-living-state`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(food),
+        body: JSON.stringify({name: name}),
     });
     const result = await fetchResponse.json()
-    if (fetchResponse.ok) {
-        specUpdate(result)
+    return result
+    
+    
+}
+async function feedBaby(food){
+    try{
+        if(verifyBaby()){
+            const messageBox = document.getElementById("MessageBox")
+            messageBox.innerText = 'Create a new baby, your baby Died.'
+            return
+        }
+        const fetchResponse = await fetch(`${BASE_URL}/baby/feed`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(food),
+        });
+        const result = await fetchResponse.json()
+        if (fetchResponse.ok) {
+            specUpdate(result)
     }
+}catch(error){
+    console.error(error)
+}
 }
 async function hydrateBaby(drink){
-    console.log(drink)
-    const fetchResponse = await fetch(`${BASE_URL}/baby/hydrate`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(drink),
-    });
-    const result = await fetchResponse.json()
-    if (fetchResponse.ok) {
-        specUpdate(result)
+    try{
+        if(verifyBaby()){
+            console.log("im dead!")
+            const messageBox = document.getElementById("MessageBox")
+            messageBox.innerHTML = 'Create a new baby, your baby Died.'
+            return
+        }
+        const fetchResponse = await fetch(`${BASE_URL}/baby/hydrate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(drink),
+        });
+        const result = await fetchResponse.json()
+        if (fetchResponse.ok) {
+            specUpdate(result)
+        }
+    }catch(error){
+        console.error(error)
     }
 }
 
