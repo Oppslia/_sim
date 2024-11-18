@@ -157,13 +157,14 @@ async function verifyBaby(){
         body: JSON.stringify({name: name}),
     });
     const result = await fetchResponse.json()
+    
     return result
     
     
 }
 async function feedBaby(food){
     try{
-        if(verifyBaby()){
+        if(!verifyBaby()){
             const messageBox = document.getElementById("MessageBox")
             messageBox.innerText = 'Create a new baby, your baby Died.'
             return
@@ -185,7 +186,8 @@ async function feedBaby(food){
 }
 async function hydrateBaby(drink){
     try{
-        if(verifyBaby()){
+        console.log(verifyBaby)
+        if(!verifyBaby()){
             console.log("im dead!")
             const messageBox = document.getElementById("MessageBox")
             messageBox.innerHTML = 'Create a new baby, your baby Died.'
